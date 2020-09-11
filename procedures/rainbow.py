@@ -2,9 +2,10 @@ import time
 
 from procedures.procedure import Procedure
 
+
 class RainbowProcedure(Procedure):
     def __init__(self):
-        super(RainbowProcedure,self).__init__()
+        super(RainbowProcedure, self).__init__()
 
     def wheel(self, pos):
         if pos < 0 or pos > 255:
@@ -30,7 +31,7 @@ class RainbowProcedure(Procedure):
         return "rainbow"
 
     def run(self):
-        super(RainbowProcedure,self).run()
+        super(RainbowProcedure, self).run()
         while self.should_stop is False:
             for j in range(255):
                 for i in range(self.led_manager.num_pixels):

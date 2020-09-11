@@ -1,8 +1,7 @@
 import time
+
 import colors
-from procedures.halloween import HalloweenProcedure
 from procedures.procedure import Procedure
-from procedures.rainbow import RainbowProcedure
 
 try:
     import neopixel
@@ -76,3 +75,6 @@ class LedManager:
             return True
         else:
             return False
+
+    def get_procedures(self):
+        return self.available_procedures.keys()

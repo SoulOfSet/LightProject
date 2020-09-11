@@ -1,6 +1,8 @@
 import board
 import flask
-from flask import Flask, request
+from flask import Flask, request, jsonify
+
+import colors
 from gpio.led_manager import LedManager
 
 is_neopixel = True
@@ -21,8 +23,8 @@ else:
     led_manager = LedManager(True, "D18", 0.75, 100)
 
 
-@app.route('/setcolor', methods=['GET'])
-def setcolor():
+@app.route('/set_color', methods=['GET'])
+def set_color():
     color = request.args.get('color')
     is_color = led_manager.fill_color(color)
     if is_color:
@@ -31,14 +33,24 @@ def setcolor():
         return flask.Response(status=500)
 
 
-@app.route('/setprocedure', methods=['GET'])
-def setprocedure():
+@app.route('/set_procedure', methods=['GET'])
+def set_procedure():
     procedure = request.args.get('procedure')
     is_real_proc = led_manager.start_procedure(procedure)
     if is_real_proc:
         return flask.Response(status=200)
     else:
         return flask.Response(status=500)
+
+
+@app.route('/get_procedures', methods=['GET'])
+def get_procedures():
+    return jsonify(list(led_manager.get_procedures()))
+
+
+@app.route('/get_colors', methods=['GET'])
+def get_colors():
+    return jsonify(list(colors.COLORS.keys()))
 
 
 if __name__ == '__main__':
