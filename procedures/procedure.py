@@ -1,19 +1,20 @@
 import threading
-import time
+
 
 class Procedure(threading.Thread):
-
-    pixels = None
     should_stop = False
     is_running = False
-    num_pixels = 0
+    led_manager = None
 
     def __init__(self, *args, **kwargs):
         super(Procedure, self).__init__(*args, **kwargs)
 
-    def init(self, pixels, num_pixels):
-       self.pixels = pixels
-       self.num_pixels = num_pixels
+    def init(self, pixels, num_pixels, led_manager):
+        self.led_manager = led_manager
+
+    @staticmethod
+    def get_name():
+        return "NO_PROC"
 
     def run(self):
         self.is_running = True
