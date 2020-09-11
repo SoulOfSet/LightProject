@@ -18,7 +18,7 @@ app = Flask(__name__)
 curr_thread = None
 
 if is_neopixel:
-    led_manager = LedManager(True, board.D18, 0.75, 100)
+    led_manager = LedManager(False, board.D18, 0.75, 100)
 else:
     led_manager = LedManager(True, "D18", 0.75, 100)
 
