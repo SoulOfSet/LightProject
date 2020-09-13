@@ -1,5 +1,4 @@
 import os
-
 import board
 import flask
 import yaml
@@ -76,7 +75,7 @@ def get_colors():
 
 
 if __name__ == '__main__':
-    eureka_client.init_registry_client(eureka_server="http://" + eureka_hostname + ":" + eureka_port + "/eureka",
+    eureka_client.init_registry_client(eureka_server="http://" + eureka_hostname + ":" + str(eureka_port) + "/eureka",
                                        app_name=app_name,
                                        instance_port=port)
     app.run(host=hostname, port=port)
