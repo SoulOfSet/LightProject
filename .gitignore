@@ -1,0 +1,5 @@
+venv/
+__pycache__/
+gpio/__pycache__/
+procedures/__pycache__/
+.idea/
