@@ -32,9 +32,10 @@ class LedManager:
             self.pixels = neopixel.NeoPixel(self.pin, self.num_pixels, brightness=0.5, auto_write=False,
                                             pixel_order=self.pixel_order)
 
-    def fill_color(self, color):
+    def fill_color(self, color, stop_current=True):
         if colors.COLORS.get(color) is not None:
-            self.stop_thread_if_running()
+            if stop_current:
+                self.stop_thread_if_running()
             if self.debug_mode is True:
                 data = "({})".format(','.join(str(p) for p in colors.COLORS[color]))
                 print("Filling color : " + color + " " + data)
@@ -70,7 +71,7 @@ class LedManager:
         if procedure in self.available_procedures:
             self.stop_thread_if_running()
             self.curr_thread = self.available_procedures[procedure]()
-            self.curr_thread.init(self.pixels, self.num_pixels, self)
+            self.curr_thread.init(self)
             self.curr_thread.start()
             return True
         else:

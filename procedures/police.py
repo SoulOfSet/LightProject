@@ -19,9 +19,9 @@ class PoliceProcedure(Procedure):
         super(PoliceProcedure, self).run()
         while self.should_stop is False:
             if self.is_red:
-                self.led_manager.fill_color(colors.BLUE)
+                self.led_manager.fill_color('blue', False)
             else:
-                self.led_manager.fill_color(colors.RED)
+                self.led_manager.fill_color('red', False)
             self.is_red = not self.is_red
             self.led_manager.show_pixels()
             time.sleep(0.5)

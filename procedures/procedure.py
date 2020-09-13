@@ -9,7 +9,7 @@ class Procedure(threading.Thread):
     def __init__(self, *args, **kwargs):
         super(Procedure, self).__init__(*args, **kwargs)
 
-    def init(self, pixels, num_pixels, led_manager):
+    def init(self, led_manager):
         self.led_manager = led_manager
 
     @staticmethod
