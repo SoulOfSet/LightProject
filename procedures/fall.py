@@ -6,7 +6,7 @@ import time
 
 class FallProcedure(Procedure):
 
-    FALL_COLORS = [colors.BROWN, colors.MAROON, colors.RED]
+    FALL_COLORS = [colors.YELLOW, colors.MAROON, colors.ORANGE]
 
     def __init__(self):
         super(FallProcedure, self).__init__()

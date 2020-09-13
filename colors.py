@@ -5,8 +5,8 @@ PURPLE = (0, 75, 130)
 ORANGE = (106, 253, 2)
 WHITE = (255, 255, 255)
 MAROON = (0, 128, 0)
-BROWN = (69, 139, 19)
+YELLOW = (255, 255, 0)
 OFF = (0, 0, 0)
 
 COLORS = {"red": RED, "green": GREEN, "blue": BLUE, "purple": PURPLE, "orange": ORANGE, "white": WHITE,
-          "maroon": MAROON, "brown": BROWN, "off": OFF}
+          "maroon": MAROON, "off": OFF}
