@@ -1,5 +1,9 @@
 hostname: 0.0.0.0
 port: 8080
+num_pixels: 100
 app_name: light-test
 eureka_port: 8761
 eureka_hostname: 192.168.1.7
+brightness: 1
+start_up_mode: procedure
+start_up_selection: fall

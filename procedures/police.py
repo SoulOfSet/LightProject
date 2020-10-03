@@ -1,7 +1,6 @@
-from procedures.procedure import Procedure
-import random
-import colors
 import time
+
+from procedures.procedure import Procedure
 
 
 class PoliceProcedure(Procedure):
@@ -24,6 +23,6 @@ class PoliceProcedure(Procedure):
                 self.led_manager.fill_color('red', False)
             self.is_red = not self.is_red
             self.led_manager.show_pixels()
-            time.sleep(0.5)
+            time.sleep(0.2)
 
         self.is_running = False
