@@ -13,17 +13,18 @@ class LedManager:
     pin = None
     debug_mode = False
     brightness = 0
-    pixel_order = "GRB"
     num_pixels = 0
     pixels = None
     curr_thread = None
+    pixel_order = None
     available_procedures = {}
 
-    def __init__(self, debug_mode, pin, brightness, num_pixels):
+    def __init__(self, debug_mode, pin, brightness, num_pixels, pixel_order):
         self.debug_mode = debug_mode
         self.pin = pin
         self.brightness = brightness
         self.num_pixels = num_pixels
+        self.pixel_order = pixel_order
 
         for cls in Procedure.__subclasses__():
             self.available_procedures[cls.get_name()] = cls

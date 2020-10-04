@@ -23,7 +23,7 @@ config_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 # Attempt to load the config file and assign it to the appropriate variables
 hostname = port = app_name = eureka_port = eureka_hostname = brightness = start_up_mode = start_up_selection = \
-    num_pixels = None
+    num_pixels = pixel_order = None
 
 try:
     with open(config_dir + os.sep + "config.yml") as config_file:
@@ -37,6 +37,7 @@ try:
         brightness = config['brightness']
         start_up_mode = config['start_up_mode']
         start_up_selection = config['start_up_selection']
+        pixel_order = config['pixel_order']
 except Exception as e:
     print("Unable to load config file")
     print(e)
@@ -45,9 +46,9 @@ except Exception as e:
 curr_thread = None
 
 if is_neopixel:
-    led_manager = LedManager(False, board.D18, brightness, num_pixels)
+    led_manager = LedManager(False, board.D18, brightness, num_pixels, pixel_order)
 else:
-    led_manager = LedManager(True, "D18", brightness, num_pixels)
+    led_manager = LedManager(True, "D18", brightness, num_pixels, pixel_order)
 
 
 @app.route('/set_color', methods=['GET'])

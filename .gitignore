@@ -3,3 +3,4 @@ __pycache__/
 gpio/__pycache__/
 procedures/__pycache__/
 .idea/
+config.yml
