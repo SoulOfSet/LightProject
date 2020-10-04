@@ -26,7 +26,7 @@ hostname = port = app_name = eureka_port = eureka_hostname = brightness = start_
     num_pixels = None
 
 try:
-    with open(config_dir + os.sep + "config.sample.yml") as config_file:
+    with open(config_dir + os.sep + "config.yml") as config_file:
         config = yaml.load(config_file, Loader=yaml.FullLoader)
         hostname = config['hostname']
         port = config['port']
