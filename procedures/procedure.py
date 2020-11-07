@@ -16,6 +16,7 @@ class Procedure(threading.Thread):
     def get_name():
         return "NO_PROC"
 
+    #TODO: Add optional extra arguments for more complex procedures without writing....whole new ones
     def run(self):
         self.is_running = True
 
