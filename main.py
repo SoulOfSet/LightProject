@@ -3,7 +3,6 @@ import board
 import flask
 import yaml
 from flask import Flask, request, jsonify
-from py_eureka_client import eureka_client
 
 import colors
 from gpio.led_manager import LedManager
@@ -22,7 +21,7 @@ app = Flask(__name__)
 config_dir = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 # Attempt to load the config file and assign it to the appropriate variables
-hostname = port = app_name = eureka_port = eureka_hostname = brightness = start_up_mode = start_up_selection = \
+hostname = port = app_name = brightness = start_up_mode = start_up_selection = \
     num_pixels = pixel_order = None
 
 try:
@@ -32,8 +31,6 @@ try:
         port = config['port']
         app_name = config['app_name']
         num_pixels = config['num_pixels']
-        eureka_port = config['eureka_port']
-        eureka_hostname = config['eureka_hostname']
         brightness = config['brightness']
         start_up_mode = config['start_up_mode']
         start_up_selection = config['start_up_selection']
@@ -83,13 +80,12 @@ def get_colors():
 
 @app.route('/status', methods=['GET'])
 def get_status():
-    return flask.Response(status=200)
-
+    return jsonify({
+        "mode": led_manager.get_mode(),
+        "type": led_manager.get_type()
+    })
 
 if __name__ == '__main__':
-    eureka_client.init_registry_client(eureka_server="http://" + eureka_hostname + ":" + str(eureka_port) + "/eureka",
-                                       app_name=app_name,
-                                       instance_port=port)
 
     if start_up_mode == "procedure":
         led_manager.start_procedure(start_up_selection)
