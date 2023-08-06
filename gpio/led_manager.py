@@ -19,6 +19,9 @@ class LedManager:
     pixel_order = None
     available_procedures = {}
 
+    mode = None
+    type = None
+
     def __init__(self, debug_mode, pin, brightness, num_pixels, pixel_order):
         self.debug_mode = debug_mode
         self.pin = pin
@@ -34,6 +37,8 @@ class LedManager:
                                             pixel_order=self.pixel_order)
 
     def fill_color(self, color, stop_current=True):
+        mode = "COLOR"
+        type = color
         if colors.COLORS.get(color) is not None:
             if stop_current:
                 self.stop_thread_if_running()
@@ -69,6 +74,8 @@ class LedManager:
                 self.curr_thread = None
 
     def start_procedure(self, procedure):
+        mode = "PROCEDURE"
+        type = procedure.get_name()
         if procedure in self.available_procedures:
             self.stop_thread_if_running()
             self.curr_thread = self.available_procedures[procedure]()
@@ -80,3 +87,9 @@ class LedManager:
 
     def get_procedures(self):
         return self.available_procedures.keys()
+
+    def get_mode(self):
+        return self.mode
+
+    def get_type(self):
+        return self.type
