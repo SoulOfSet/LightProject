@@ -37,8 +37,8 @@ class LedManager:
                                             pixel_order=self.pixel_order)
 
     def fill_color(self, color, stop_current=True):
-        mode = "COLOR"
-        type = color
+        self.mode = "COLOR"
+        self.type = color
         if colors.COLORS.get(color) is not None:
             if stop_current:
                 self.stop_thread_if_running()
@@ -74,8 +74,8 @@ class LedManager:
                 self.curr_thread = None
 
     def start_procedure(self, procedure):
-        mode = "PROCEDURE"
-        type = procedure.__class__.__name__
+        self.mode = "PROCEDURE"
+        self.type = procedure.__class__.__name__
         if procedure in self.available_procedures:
             self.stop_thread_if_running()
             self.curr_thread = self.available_procedures[procedure]()
