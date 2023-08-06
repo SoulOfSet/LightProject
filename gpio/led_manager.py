@@ -75,7 +75,7 @@ class LedManager:
 
     def start_procedure(self, procedure):
         self.mode = "PROCEDURE"
-        self.type = type(procedure).getName()
+        self.type = procedure
         if procedure in self.available_procedures:
             self.stop_thread_if_running()
             self.curr_thread = self.available_procedures[procedure]()
